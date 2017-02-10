@@ -35,21 +35,21 @@ But now you're faced with parsing every step along the way; it even has to be ca
 First, some simple examples, on the first level of the example JSON:
 
 ```ruby
-name = HashDig simple_json, "name"    # {"first" => "Bob", "last" => "Smith"}
-id   = HashDig simple_json, "id"      # "abd0jjlkladiu2"
+name = HashDig.dig simple_json, "name"    # {"first" => "Bob", "last" => "Smith"}
+id   = HashDig.dig simple_json, "id"      # "abd0jjlkladiu2"
 ```
 
 How about getting the first name from the data?
 
 ```ruby
-first_name = HashDig simple_json, "name,first"  # "Bob"
+first_name = HashDig.dig simple_json, "name,first"  # "Bob"
 ```
 
 It's important to note at this point that the _compile time_ type of `name`, `id`, and `first_name` are still `JSON::Type`; you will need to do a final conversion, so maybe it looks more like this:
 
 ```ruby
-name=HashDig(simple_json,"name").as(Hash(String,JSON::Type))  # {"first" => "Bob", "last" => "Smith"}
-id=HashDig(simple_json, "id").as(String)        		 # "abd0jjlkladiu2"
+name=HashDig.dig(simple_json,"name").as(Hash(String,JSON::Type))  # {"first" => "Bob", "last" => "Smith"}
+id=HashDig.dig(simple_json, "id").as(String)        		 # "abd0jjlkladiu2"
 first_name=HashDig(simple_json, "name,first").as(String) # "Bob"
 ```
 
